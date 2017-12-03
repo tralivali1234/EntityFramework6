@@ -39,16 +39,11 @@ namespace Microsoft.Data.Tools.VSXmlDesignerBase.Refactoring
                 previews.AddRange(CreatePreviewNodesForVsLang(fileChanges));
             }
 
-            // No change proposals so return an empty preview node
-            if (previews.Count == 0)
-            {
-                previews.Add(CreateEmptyNode());
-            }
-
             return previews;
         }
 
         [SuppressMessage("Microsoft.Maintainability", "CA1502:AvoidExcessiveComplexity")]
+        [SuppressMessage("Microsoft.Maintainability", "CA1506:AvoidExcessiveClassCoupling")]
         protected static List<PreviewChangesNode> CreatePreviewNodesForVsLang(
             IList<FileChange> fileChanges, bool placeNodesUnderSingleRoot = false)
         {

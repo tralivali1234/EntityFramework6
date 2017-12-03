@@ -9,7 +9,7 @@ Project global pre-settings.
   
   <PropertyGroup >
     <RuntimeVersionMajor>6</RuntimeVersionMajor>
-    <RuntimeVersionMinor>2</RuntimeVersionMinor>
+    <RuntimeVersionMinor>3</RuntimeVersionMinor>
     <RuntimeAssemblyVersionMinor>0</RuntimeAssemblyVersionMinor>
     <ToolingVersionMajor Condition="'$(VisualStudioVersion)' == '11.0'">11</ToolingVersionMajor>
     <ToolingVersionMajor Condition="'$(VisualStudioVersion)' == '12.0'">12</ToolingVersionMajor>
@@ -22,10 +22,10 @@ Project global pre-settings.
     <VersionBuild>0</VersionBuild>
     <VersionRevision>0</VersionRevision>
     <VersionReleasePrefix>0</VersionReleasePrefix>
-    <VersionRelease>$(VersionReleasePrefix)-alpha1</VersionRelease>
-    <VersionReleaseName>Alpha 1</VersionReleaseName>
-    <ToolingDotNetFrameworkVersion Condition="'$(VisualStudioVersion)' == '15.0'">v4.5.1</ToolingDotNetFrameworkVersion>
-    <ToolingDotNetFrameworkVersion Condition="'$(VisualStudioVersion)' != '15.0'">v4.5</ToolingDotNetFrameworkVersion>
+    <VersionRelease>$(VersionReleasePrefix)-beta1</VersionRelease>
+    <VersionReleaseName>Beta 1</VersionReleaseName>
+    <ToolingDotNetFrameworkVersion Condition="'$(VisualStudioVersion)' == '11.0' OR '$(VisualStudioVersion)' == '12.0' OR '$(VisualStudioVersion)' == '14.0'">v4.5</ToolingDotNetFrameworkVersion>
+    <ToolingDotNetFrameworkVersion Condition="'$(ToolingDotNetFrameworkVersion)' == ''">v4.6</ToolingDotNetFrameworkVersion>
   </PropertyGroup>
 
   <PropertyGroup>
@@ -106,6 +106,7 @@ Project global pre-settings.
     <CustomAfterMicrosoftCommonTargets>$(MSBuildThisFileDirectory)EntityFramework.targets</CustomAfterMicrosoftCommonTargets>
     <CustomAfterNuGetProjTargets>$(MSBuildThisFileDirectory)EntityFramework.targets</CustomAfterNuGetProjTargets>
     <CustomAfterWixTargets>$(MSBuildThisFileDirectory)EntityFramework.targets</CustomAfterWixTargets>
+    <CustomAfterSwixTargets>$(MSBuildThisFileDirectory)EntityFramework.targets</CustomAfterSwixTargets>
   </PropertyGroup>
 
   <PropertyGroup>

@@ -3,7 +3,9 @@
 namespace System.Data.Entity.Infrastructure
 {
     using System.Data.Entity.Core.Objects;
+    using System.Data.Entity.Infrastructure.DependencyResolution;
     using System.Data.Entity.Internal;
+    using System.Data.Entity.Migrations.History;
     using System.Data.Entity.ModelConfiguration.Edm.Serialization;
     using System.Data.Entity.Resources;
     using System.Data.Entity.Utilities;
@@ -51,7 +53,24 @@ namespace System.Data.Entity.Infrastructure
                 throw Error.EdmxWriter_EdmxFromModelFirstNotSupported();
             }
 
-            var builder = compiledModel.CachedModelBuilder.Clone();
+            var modelStore = DbConfiguration.DependencyResolver.GetService<DbModelStore>();
+            if (modelStore != null)
+            {
+                var storedModel = modelStore.TryGetEdmx(context.GetType());
+                if (storedModel != null)
+                {
+                    storedModel.WriteTo(writer);
+                    return;
+                }
+            }
+
+            var cachedModelBuilder = compiledModel.CachedModelBuilder;
+            if (cachedModelBuilder == null)
+            {
+                throw Error.EdmxWriter_EdmxFromRawCompiledModelNotSupported();
+            }
+            
+            var builder = cachedModelBuilder.Clone();
 
             WriteEdmx(
                 internalContext.ModelProviderInfo == null

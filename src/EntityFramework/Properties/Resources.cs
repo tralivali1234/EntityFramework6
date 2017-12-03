@@ -1495,6 +1495,14 @@ namespace System.Data.Entity.Resources
         }
 
         // <summary>
+        // A string like "Writing the EDMX file or using Migrations from a DbContext created using a DbCompiledModel that is not in the DbModelStore cache is not supported. Ensure that the DbCompiledModel is stored in the DbModelStore cache."
+        // </summary>
+        internal static string EdmxWriter_EdmxFromRawCompiledModelNotSupported
+        {
+            get { return EntityRes.GetString(EntityRes.EdmxWriter_EdmxFromRawCompiledModelNotSupported); }
+        }
+
+        // <summary>
         // A string like "The context is being used in Code First mode with code that was generated from an EDMX file for either Database First or Model First development.  This will not work correctly. To fix this problem do not remove the line of code that throws this exception. If you wish to use Database First or Model First, then make sure that the Entity Framework connection string is included in the app.config or web.config of the start-up project. If you are creating your own DbConnection, then make sure that it is an EntityConnection and not some other type of DbConnection, and that you pass it to one of the base DbContext constructors that take a DbConnection. To learn more about Code First, Database First, and Model First see the Entity Framework documentation here: http://go.microsoft.com/fwlink/?LinkId=394715"
         // </summary>
         internal static string UnintentionalCodeFirstException_Message
@@ -1623,7 +1631,7 @@ namespace System.Data.Entity.Resources
         }
 
         // <summary>
-        // A string like "Key usage is not valid. The {0} class  cannot define keys because one of its base classes ('{1}') defines keys."
+        // A string like "Key usage is not valid. The {0} class cannot define keys because one of its base classes ('{1}') defines keys."
         // </summary>
         internal static string EdmModel_Validator_Semantic_InvalidKeyKeyDefinedInBaseClass(object p0, object p1)
         {
@@ -7127,15 +7135,15 @@ namespace System.Data.Entity.Resources
         }
 
         // <summary>
-        // A string like "All objects in the EntitySet '{0}' must have unique primary keys. However, an instance of type '{1}' and an instance of type '{2}' both have the same primary key value, '{3}'. "
+        // A string like "All objects in the EntitySet '{0}' must have unique primary keys. However, an instance of type '{1}' and an instance of type '{2}' both have the same primary key value. "
         // </summary>
-        internal static string Materializer_RecyclingEntity(object p0, object p1, object p2, object p3)
+        internal static string Materializer_RecyclingEntity(object p0, object p1, object p2)
         {
-            return EntityRes.GetString(EntityRes.Materializer_RecyclingEntity, p0, p1, p2, p3);
+            return EntityRes.GetString(EntityRes.Materializer_RecyclingEntity, p0, p1, p2);
         }
 
         // <summary>
-        // A string like "An object with a key value '{0}' already exists in an added state. An object in this state cannot be merged."
+        // A string like "An object of type '{0}' with the same key already exists in an added state. An object in this state cannot be merged."
         // </summary>
         internal static string Materializer_AddedEntityAlreadyExists(object p0)
         {
@@ -14029,6 +14037,30 @@ namespace System.Data.Entity.Resources
         {
             return EntityRes.GetString(EntityRes.StoreTypeNotFound, p0, p1);
         }
+
+        // <summary>
+        // A string like "Escaping within like expressions is not supported by the provider."
+        // </summary>
+        internal static string ProviderDoesNotSupportEscapingLikeArgument
+        {
+            get { return EntityRes.GetString(EntityRes.ProviderDoesNotSupportEscapingLikeArgument); }
+        }
+
+        // <summary>
+        // A string like "The index component '{0}' is not a declared property on type '{1}'. Verify that it has not been explicitly excluded from the model and that it is a valid primitive property."
+        // </summary>
+        internal static string IndexPropertyNotFound(object p0, object p1)
+        {
+            return EntityRes.GetString(EntityRes.IndexPropertyNotFound, p0, p1);
+        }
+
+        // <summary>
+        // A string like "IndexAttributes with identity '{0}' and name '{1}' cannot be merged because they ambiguously match multiple, conflicting IndexAttributes."
+        // </summary>
+        internal static string ConflictingIndexAttributeMatches(object p0, object p1)
+        {
+            return EntityRes.GetString(EntityRes.ConflictingIndexAttributeMatches, p0, p1);
+        }
     }
 
     // <summary>
@@ -15118,6 +15150,14 @@ namespace System.Data.Entity.Resources
         }
 
         // <summary>
+        // NotSupportedException with message like "Writing the EDMX file or using Migrations from a DbContext created using a DbCompiledModel that is not in the DbModelStore cache is not supported. Ensure that the DbCompiledModel is stored in the DbModelStore cache."
+        // </summary>
+        internal static Exception EdmxWriter_EdmxFromRawCompiledModelNotSupported()
+        {
+            return new NotSupportedException(Strings.EdmxWriter_EdmxFromRawCompiledModelNotSupported);
+        }
+
+        // <summary>
         // InvalidOperationException with message like "The context factory type '{0}' does not have a public parameterless constructor. Either add a public parameterless constructor, create an IDbContextFactory implementation in the context assembly, or register a context factory using DbConfiguration."
         // </summary>
         internal static Exception DbContextServices_MissingDefaultCtor(object p0)
@@ -15646,6 +15686,22 @@ namespace System.Data.Entity.Resources
         }
 
         // <summary>
+        // InvalidOperationException with message like "The index component '{0}' is not a declared property on type '{1}'. Verify that it has not been explicitly excluded from the model and that it is a valid primitive property."
+        // </summary>
+        internal static Exception IndexPropertyNotFound(object p0, object p1)
+        {
+            return new InvalidOperationException(Strings.IndexPropertyNotFound(p0, p1));
+        }
+
+        // <summary>
+        // InvalidOperationException with message like "IndexAttributes with identity '{0}' and name '{1}' cannot be merged because they ambiguously match multiple, conflicting IndexAttributes."
+        // </summary>
+        internal static Exception ConflictingIndexAttributeMatches(object p0, object p1)
+        {
+            return new InvalidOperationException(Strings.ConflictingIndexAttributeMatches(p0, p1));
+        }
+
+        // <summary>
         // The exception that is thrown when the value of an argument is outside the allowable range of values as defined by the invoked method.
         // </summary>
         internal static Exception ArgumentOutOfRange(string paramName)
@@ -15863,6 +15919,7 @@ namespace System.Data.Entity.Resources
         internal const string Database_InitializationException = "Database_InitializationException";
         internal const string EdmxWriter_EdmxFromObjectContextNotSupported = "EdmxWriter_EdmxFromObjectContextNotSupported";
         internal const string EdmxWriter_EdmxFromModelFirstNotSupported = "EdmxWriter_EdmxFromModelFirstNotSupported";
+        internal const string EdmxWriter_EdmxFromRawCompiledModelNotSupported = "EdmxWriter_EdmxFromRawCompiledModelNotSupported";
         internal const string UnintentionalCodeFirstException_Message = "UnintentionalCodeFirstException_Message";
         internal const string DbContextServices_MissingDefaultCtor = "DbContextServices_MissingDefaultCtor";
         internal const string CannotCallGenericSetWithProxyType = "CannotCallGenericSetWithProxyType";
@@ -17430,6 +17487,9 @@ namespace System.Data.Entity.Resources
         internal const string CannotSetBaseTypeCyclicInheritance = "CannotSetBaseTypeCyclicInheritance";
         internal const string CannotDefineKeysOnBothBaseAndDerivedTypes = "CannotDefineKeysOnBothBaseAndDerivedTypes";
         internal const string StoreTypeNotFound = "StoreTypeNotFound";
+        internal const string ProviderDoesNotSupportEscapingLikeArgument = "ProviderDoesNotSupportEscapingLikeArgument";
+        internal const string IndexPropertyNotFound = "IndexPropertyNotFound";
+        internal const string ConflictingIndexAttributeMatches = "ConflictingIndexAttributeMatches";
 
         private static EntityRes loader;
         private readonly ResourceManager resources;
